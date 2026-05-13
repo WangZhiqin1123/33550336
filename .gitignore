@@ -1,0 +1,29 @@
+# Unity generated files
+Library/
+Temp/
+Obj/
+Build/
+Builds/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.userprefs
+*.pidb
+*.booproj
+.DS_Store
+*.meta~
+
+# Visual Studio cache
+.vs/
+.vscode/
+
+# Build artifacts
+*.apk
+*.aab
+*.exe
+*.dll
+*.pdb
+
+# Logs
+*.log

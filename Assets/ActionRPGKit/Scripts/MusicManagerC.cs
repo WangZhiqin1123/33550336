@@ -24,10 +24,7 @@ public class MusicManagerC : MonoBehaviour
 
     void Start()
     {
-        if (backgroundMusic != null)
-        {
-            PlayMusic();
-        }
+        PlayMusic();
     }
 
     void InitializeAudio()
@@ -37,10 +34,18 @@ public class MusicManagerC : MonoBehaviour
         audioSource.volume = targetVolume;
         audioSource.playOnAwake = false;
 
-        if (backgroundMusic != null)
+        if (backgroundMusic == null)
         {
-            audioSource.clip = backgroundMusic;
-            audioSource.Play();
+            LoadMusicFromResources();
+        }
+    }
+
+    void LoadMusicFromResources()
+    {
+        AudioClip[] clips = Resources.LoadAll<AudioClip>("Music");
+        if (clips.Length > 0)
+        {
+            backgroundMusic = clips[0];
         }
     }
 

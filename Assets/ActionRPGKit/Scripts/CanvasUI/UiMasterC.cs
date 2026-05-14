@@ -17,7 +17,17 @@ public class UiMasterC : MonoBehaviour {
 
 	public SkillShortCutUI[] mobileSkillIcon;
 
+	void InitializeMusicManager(){
+		if(MusicManagerC.instance == null){
+			GameObject musicManager = new GameObject("MusicManager");
+			musicManager.AddComponent<MusicManagerC>();
+			DontDestroyOnLoad(musicManager);
+		}
+	}
+
 	void Start(){
+		InitializeMusicManager();
+		
 		if(eventSystemPrefab){
 			ev = Instantiate(eventSystemPrefab , eventSystemPrefab.transform.position , eventSystemPrefab.transform.rotation) as GameObject;
 			DontDestroyOnLoad(ev.gameObject);

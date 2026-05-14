@@ -4,6 +4,23 @@
 
 ---
 
+## v1.15 - Add Background Music System
+**Date: 2026-05-14**
+**Author: Wang Zhiqin**
+
+- Created `MusicManagerC.cs`
+- Implemented background music manager with singleton pattern
+- Added music loop playback functionality
+- Implemented DontDestroyOnLoad for cross-scene music
+- Added volume control and music playback control methods
+- Created MusicManager prefab
+- Added Resources/Music folder for audio files
+- Supports automatic music loading from Resources folder
+- Added Start() method to ensure music plays
+- Volume set to 0.7 for better audio balance
+
+---
+
 ## v1.14 - Final Optimization Version
 **Date: 2026-05-13**
 **Author: Wang Zhiqin**

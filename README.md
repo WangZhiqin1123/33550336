@@ -6,6 +6,18 @@ This is a role-playing game project based on Unity ActionRPGKit.
 
 ## Version History
 
+### v1.15 - Add Background Music System (2026-05-14)
+- Created `MusicManagerC.cs`
+- Implemented background music manager with singleton pattern
+- Added music loop playback functionality
+- Implemented DontDestroyOnLoad for cross-scene music
+- Added volume control and music playback control methods
+- Created MusicManager prefab
+- Added Resources/Music folder for audio files
+- Supports automatic music loading from Resources folder
+- Added Start() method to ensure music plays
+- Volume set to 0.7 for better audio balance
+
 ### v1.14 - Final Optimization Version (2026-05-13)
 - Added complete debug information
 - Optimized all system performance
@@ -190,8 +202,8 @@ Configure quest ID in QuestDataC.cs to ensure correct unlock logic.
 
 **Project Name:** RPG Game Project
 **Author:** Wang Zhiqin
-**Version:** 1.14
-**Date:** 2026-05-13
+**Version:** 1.15
+**Date:** 2026-05-14
 **Engine:** Unity
 **Asset Pack:** ActionRPGKit
 **GitHub:** https://github.com/WangZhiqin1123/33550336

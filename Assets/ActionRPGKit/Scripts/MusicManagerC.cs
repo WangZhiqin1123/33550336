@@ -6,7 +6,7 @@ public class MusicManagerC : MonoBehaviour
     public AudioClip backgroundMusic;
     private AudioSource audioSource;
     public bool isMuted = false;
-    public float targetVolume = 0.7f;
+    public float targetVolume = 1.0f;
 
     void Awake()
     {
@@ -14,6 +14,7 @@ public class MusicManagerC : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
+            EnsureAudioListenerExists();
             InitializeAudio();
         }
         else
@@ -24,7 +25,25 @@ public class MusicManagerC : MonoBehaviour
 
     void Start()
     {
+        if (backgroundMusic == null)
+        {
+            LoadMusicFromResources();
+        }
         PlayMusic();
+    }
+
+    void Update()
+    {
+        if (audioSource != null)
+        {
+            audioSource.volume = isMuted ? 0 : targetVolume;
+            
+            if (!audioSource.isPlaying && backgroundMusic != null)
+            {
+                audioSource.clip = backgroundMusic;
+                audioSource.Play();
+            }
+        }
     }
 
     void InitializeAudio()
@@ -33,10 +52,26 @@ public class MusicManagerC : MonoBehaviour
         audioSource.loop = true;
         audioSource.volume = targetVolume;
         audioSource.playOnAwake = false;
+        audioSource.priority = 0;
+        audioSource.spatialBlend = 0f;
+    }
 
-        if (backgroundMusic == null)
+    void EnsureAudioListenerExists()
+    {
+        AudioListener[] listeners = FindObjectsOfType<AudioListener>();
+        if (listeners.Length == 0)
         {
-            LoadMusicFromResources();
+            Camera mainCamera = Camera.main;
+            if (mainCamera != null)
+            {
+                mainCamera.gameObject.AddComponent<AudioListener>();
+            }
+            else
+            {
+                GameObject listenerObj = new GameObject("AudioListener");
+                listenerObj.AddComponent<AudioListener>();
+                DontDestroyOnLoad(listenerObj);
+            }
         }
     }
 
